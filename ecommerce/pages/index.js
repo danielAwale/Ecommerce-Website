@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
-const Home = () => {
+const Home = ({ products, bannerData }) => {
   return (
     <>
       <HeroBanner />
@@ -13,7 +14,7 @@ const Home = () => {
       </div>
 
       <div className='products-container'>
-        {['Product1', 'Product2'].map((product) => product)}
+        {products.map((product) => product.name)}
       </div>
 
       <FooterBanner />
@@ -21,4 +22,19 @@ const Home = () => {
   )
 }
 
+
+//Next.js will pre-render this page on each request using the data returned by getServerSideProps.
+
+
+export const getServerSideProps = async () => {
+  // code below is the query to select all products from sanity
+  const productQuery = '*[_type == "product"]'
+  const products = await client.fetch(productQuery);
+  const bannerQuery = '*[_type == "banner"]'
+  const bannerData = await client.fetch(bannerQuery);
+
+  return {
+    props: { products, bannerData }
+  }
+}
 export default Home
