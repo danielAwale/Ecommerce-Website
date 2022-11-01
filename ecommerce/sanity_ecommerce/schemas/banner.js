@@ -14,7 +14,7 @@ export default {
     {
       name: 'buttonText',
       title: 'Buttontext',
-      type: 'String'
+      type: 'string'
     },
     {
       name: 'product',
