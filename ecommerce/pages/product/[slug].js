@@ -23,7 +23,7 @@ const ProductDetails = ({ product, products }) => {
             ))}
           </div> */}
         </div>
-        <div className='product-details-desc'>
+        <div className='product-detail-desc'>
           <h1>{name}</h1>
           <div className='reviews'>
             <div>
@@ -54,6 +54,7 @@ const ProductDetails = ({ product, products }) => {
           </div>
         </div>
       </div>
+      <div className='maylike-products-wrapper'></div>
     </div>
   )
   console.log(product)
