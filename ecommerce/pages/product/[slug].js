@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { client, urlFor } from '../../lib/client'
+import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
@@ -21,7 +22,21 @@ const ProductDetails = ({ product, products }) => {
               />
             ))}
           </div> */}
-
+          <div className='product-details-desc'>
+            <h1>{name}</h1>
+            <div className='reviews'>
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiOutlineStar />
+            </div>
+            <p>
+              (20)
+            </p>
+          </div>
+          <h4>Details: </h4>
+          <p>{details}</p>
         </div>
       </div>
     </div>
