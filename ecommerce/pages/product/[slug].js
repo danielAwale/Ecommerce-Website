@@ -9,7 +9,7 @@ const ProductDetails = ({ product, products }) => {
     <div>
       <div className='product-detail-container'>
         <div className='image-contianer'>
-          <img src={urlFor(image && image[0])} />
+          <img src={urlfor(image && image[0])} />
         </div>
       </div>
 
@@ -17,7 +17,25 @@ const ProductDetails = ({ product, products }) => {
   )
 }
 
+export const getStaticPaths = async () => {
+  const query = `*[_type == "product] {
+    slug {
+      current
+    }
+  }`
 
+  const products = await client.fetch(query);
+  const paths = products.map(product => ({
+    params: {
+      slug: product.slug.current
+    }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
 
 export const getStaticProps = async ({ params: slug }) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
